@@ -1,4 +1,4 @@
-import { googleOAuthProvider } from "$lib/server/auth";
+import { createGoogleOAuthClient } from "$lib/server/auth";
 import { decodeIdToken } from "arctic";
 import { encodeBase32, encodeHexLowerCase } from "@oslojs/encoding";
 import { sha256 } from "@oslojs/crypto/sha2";
@@ -28,7 +28,7 @@ export async function GET(event: RequestEvent): Promise<Response> {
 
   let tokens: OAuth2Tokens;
   try {
-    tokens = await googleOAuthProvider.validateAuthorizationCode(code, codeVerifier);
+    tokens = await Effect.runPromise(createGoogleOAuthClient(event)).then(client => client.validateAuthorizationCode(code, codeVerifier));
   } catch (e) {
     return new Response("Please restart the process.", {
       status: 400

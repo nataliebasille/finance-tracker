@@ -1,12 +1,13 @@
-import { googleOAuthProvider } from "$lib/server/auth";
+import { createGoogleOAuthClient } from "$lib/server/auth";
 import { generateCodeVerifier, generateState } from "arctic";
 
 import type { RequestEvent } from "./$types";
+import { Effect } from "effect";
 
 export function GET(event: RequestEvent): Response {
   const state = generateState();
   const codeVerifier = generateCodeVerifier();
-  const url = googleOAuthProvider.createAuthorizationURL(state, codeVerifier, ["openid", "profile", "email"]);
+  const url = Effect.runSync(createGoogleOAuthClient(event)).createAuthorizationURL(state, codeVerifier, ["openid", "profile", "email"]);
 
   event.cookies.set("google_oauth_state", state, {
     httpOnly: true,

@@ -1,2 +1,2 @@
 export * from './utils';
-export { default as googleOAuthProvider } from './providers/google';
+export * from './providers/google';
