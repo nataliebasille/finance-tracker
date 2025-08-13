@@ -1,13 +1,13 @@
 import { pgTable, serial, integer, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const user = pgTable('user', {
-	id: text('id').primaryKey(),
-	age: integer('age')
+	id: serial('id').primaryKey(),
+	emailAddress: text('email_address').unique()
 });
 
 export const session = pgTable('session', {
 	id: text('id').primaryKey(),
-	userId: text('user_id')
+	userId: integer('user_id')
 		.notNull()
 		.references(() => user.id),
 	expiresAt: timestamp('expires_at', { withTimezone: true, mode: 'date' }).notNull()
