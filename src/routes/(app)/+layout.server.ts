@@ -1,14 +1,16 @@
-import { effectLoader, httpStatus } from "$lib/server/effect";
-import { Effect } from "effect";
+import { runAppEffect, httpStatus } from '$lib/server/effect';
+import { Effect } from 'effect';
 
-export const load = effectLoader((event) => {
-  return Effect.gen(function* () {
-    if (event.locals.session === null || event.locals.user === null) {
-      return yield* httpStatus.redirect(302, "/login");
-    }
+export const load = (event) => {
+	return runAppEffect(
+		Effect.gen(function* () {
+			if (event.locals.session === null || event.locals.user === null) {
+				return yield* httpStatus.redirect(302, '/login');
+			}
 
-    return {
-      user: event.locals.user
-    };
-  })
-});
+			return {
+				user: event.locals.user
+			};
+		})
+	);
+};

@@ -1,5 +1,5 @@
 import { Effect } from "effect";
-import { db, schema } from "../db";
+import { query, schema } from "../db";
 import { env } from '$env/dynamic/private';
 import { httpStatus } from "../effect";
 import { generateSessionToken, setSessionTokenCookie } from "./utils";
@@ -13,16 +13,16 @@ export const signIn = (event: RequestEvent, email: string) => Effect.gen(
       return yield* httpStatus.forbidden();
     }
 
-    let user = yield* Effect.tryPromise(() => db.query.user.findFirst({ where: (users, { eq }) => eq(users.emailAddress, email) }));
+    let user = yield* query((db) => db.query.user.findFirst({ where: (users, { eq }) => eq(users.emailAddress, email) }));
 
     if (!user) {
-      user = yield* Effect.tryPromise(() => db.insert(schema.user).values({ emailAddress: email }).returning().then(users => users[0]));
+      user = yield* query((db) => db.insert(schema.user).values({ emailAddress: email }).returning().then(users => users[0]));
     }
 
     const sessionToken = generateSessionToken();
     const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(sessionToken)));
 
-    const session = yield* Effect.tryPromise(() => db.insert(schema.session).values({ id: sessionId, userId: user.id, expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30) }).returning().then(sessions => sessions[0]));
+    const session = yield* query((db) => db.insert(schema.session).values({ id: sessionId, userId: user.id, expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30) }).returning().then(sessions => sessions[0]));
 
     setSessionTokenCookie(event, sessionToken, session.expiresAt);
 
