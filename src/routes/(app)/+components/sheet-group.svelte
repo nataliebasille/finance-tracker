@@ -1,8 +1,6 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
-	import { Label } from '$lib/components/ui/label';
-	import * as Form from '$lib/components/ui/form';
-	import SheetItem from './sheet-item.svelte';
+	import SheetItem from './sheet-row.svelte';
 
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import type { FinanceSheetLineItem } from '../+contexts/finance-sheet.context';

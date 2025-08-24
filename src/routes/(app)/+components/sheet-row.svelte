@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { superForm, type SuperValidated } from 'sveltekit-superforms';
 	import type { FinanceSheetLineItem } from '../+contexts/finance-sheet.context';
-	import SheetField from './sheet-field.svelte';
+	import SheetField from './sheet-cell.svelte';
 
 	type SheetItemProps = {
 		item: SuperValidated<FinanceSheetLineItem>;
