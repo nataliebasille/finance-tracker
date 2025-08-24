@@ -4,11 +4,13 @@
 	import * as Separator from '$lib/components/ui/separator';
 </script>
 
-<div class="flex h-screen w-screen items-center justify-center bg-accent">
+<div class="flex h-screen w-screen items-center justify-center">
 	<Card.Root class="gap-4">
 		<Card.Header class="text-center">
 			<Card.Title class="text-3xl tracking-tighter">Basille's</Card.Title>
-			<Card.Description class="text-xl text-nowrap uppercase">Finance tracker</Card.Description>
+			<Card.Description class="text-xl text-nowrap uppercase"
+				>Finance tracker</Card.Description
+			>
 		</Card.Header>
 
 		<Separator.Root />

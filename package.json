@@ -21,7 +21,10 @@
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.18.0",
 		"@iconify-json/devicon": "^1.2.41",
+		"@iconify-json/entypo": "^1.2.1",
+		"@iconify-json/fluent": "^1.2.29",
 		"@iconify-json/logos": "^1.2.9",
+		"@iconify-json/lucide": "^1.2.63",
 		"@internationalized/date": "^3.8.2",
 		"@lucide/svelte": "^0.539.0",
 		"@sveltejs/adapter-vercel": "^5.6.3",
@@ -62,7 +65,8 @@
 		"arctic": "^3.7.0",
 		"drizzle-orm": "^0.40.0",
 		"effect": "^3.17.7",
-		"postgres": "^3.4.5"
+		"postgres": "^3.4.5",
+		"zod": "^3.25.76"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [

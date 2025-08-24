@@ -3,6 +3,7 @@
 	"singleQuote": true,
 	"trailingComma": "none",
 	"printWidth": 88,
+	"experimentalTernaries": true,
 	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
 	"overrides": [
 		{

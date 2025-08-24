@@ -5,8 +5,13 @@ import { defineConfig } from 'vite';
 import Icons from 'unplugin-icons/vite';
 
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit(), Icons({
-		compiler: 'svelte',
-		autoInstall: true
-	}), devtoolsJson()]
+	plugins: [
+		tailwindcss(),
+		sveltekit(),
+		Icons({
+			compiler: 'svelte',
+			autoInstall: true
+		}),
+		devtoolsJson()
+	]
 });

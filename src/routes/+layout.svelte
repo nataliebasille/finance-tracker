@@ -9,4 +9,6 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-{@render children?.()}
+<main class="h-screen w-screen bg-accent">
+	{@render children?.()}
+</main>
