@@ -5,7 +5,10 @@ export const baseFinanceSheetLineItem = z.object({
 	amount: z.number().int().min(0),
 	estimate: z.number().int().min(0).optional(),
 	date: z.date().optional(),
-	description: z.string().optional()
+	description: z.string().optional(),
+	disabledFields: z
+		.array(z.enum(['amount', 'estimate', 'date', 'description']))
+		.optional()
 });
 
 export const incomeLineItem = baseFinanceSheetLineItem.extend({

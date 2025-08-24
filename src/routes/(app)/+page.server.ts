@@ -11,7 +11,8 @@ export const load = () =>
 				await superValidate(
 					{
 						amount: 0,
-						description: 'Pay'
+						description: 'Pay',
+						disabledFields: ['description']
 					},
 					zod(incomeLineItem)
 				)

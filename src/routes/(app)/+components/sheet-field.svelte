@@ -11,7 +11,7 @@
 
 	type SheetFieldProps = {
 		form: FsSuperForm<FinanceSheetLineItem>;
-		name: Exclude<keyof FinanceSheetLineItem, 'type'>;
+		name: Exclude<keyof FinanceSheetLineItem, 'type' | 'disabledFields'>;
 		class?: string;
 	};
 
@@ -30,14 +30,15 @@
 					<div class="relative">
 						<EditableInput
 							type={inputType}
-							class={cn(isCurrency && 'pl-6')}
+							class={cn(isCurrency && 'pl-5')}
+							disabled={$formData.disabledFields?.includes(name)}
 							bind:value={$formData[name]}
 							{...props}
 							{...constraints}
 						></EditableInput>
 
 						{#if isCurrency}
-							<DollarSign class="absolute top-2.5 left-1 size-4" />
+							<DollarSign class="absolute top-3.5 left-1 size-3" />
 						{/if}
 					</div>
 				{/snippet}

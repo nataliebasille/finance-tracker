@@ -87,13 +87,16 @@
 				>{currentValue}</span
 			>
 		{/if}
-		<Button
-			class="size-7 rounded-lg"
-			variant="ghost"
-			size="icon"
-			onclick={() => (editing = true)}
-		>
-			<Pencil />
-		</Button>
+
+		{#if !restProps.disabled}
+			<Button
+				class="size-7 rounded-lg"
+				variant="ghost"
+				size="icon"
+				onclick={() => (editing = true)}
+			>
+				<Pencil />
+			</Button>
+		{/if}
 	</div>
 {/if}
